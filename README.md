@@ -1,6 +1,6 @@
-# 👥 User Management Dashboard
+# 🏢 HR Pro - Employee Management System
 
-A professional full-stack web application for managing users with modern UI/UX, built with React and Node.js.
+A professional, full-stack HR management application for managing employees, departments, and payroll. Built with React and Node.js.
 
 ![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-18.x-339933?logo=node.js)
@@ -9,84 +9,81 @@ A professional full-stack web application for managing users with modern UI/UX, 
 
 ## ✨ Features
 
-### Core Functionality
-- **Create** - Add new users with validated form inputs
-- **Read** - View all users in a responsive data table
-- **Update** - Edit existing user information inline
-- **Delete** - Remove users with confirmation modal
+### Dashboard
+- Real-time statistics (Total Employees, Active, On Leave, Payroll)
+- Department distribution overview
+- Quick access to all functions
+
+### Employee Management
+- Complete CRUD operations
+- Employee profiles with detailed information
+- Status tracking (Active, On Leave, Inactive)
+- Department and position assignment
 
 ### Advanced Features
-- **🔍 Search & Filter** - Real-time search by name or email
-- **📊 Sorting** - Sort by ID, Name, or Email (ascending/descending)
-- **📄 Pagination** - Navigate through large datasets efficiently
-- **🔔 Toast Notifications** - Visual feedback for all actions
-- **⚠️ Confirmation Modals** - Prevent accidental deletions
-- **✅ Form Validation** - Client-side validation for all inputs
-- **📱 Responsive Design** - Works on all screen sizes
+- 🔍 **Real-time Search** - Search by name, email, or position
+- 🏢 **Department Filter** - Filter employees by department
+- 📊 **Status Filter** - Filter by employment status
+- 📄 **Pagination** - Navigate through large datasets
+- 📥 **Export Data** - Export employee data as JSON
+- 🔔 **Toast Notifications** - Visual feedback for all actions
+- ⚠️ **Confirmation Modals** - Prevent accidental deletions
+- 📱 **Responsive Design** - Works on all devices
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- React 18 with Hooks (useState, useEffect, useMemo, useCallback)
-- CSS3 with CSS Variables and Flexbox/Grid
+- React 18 with Hooks
+- CSS3 with CSS Variables
+- Font Awesome Icons
 - Component-based architecture
-- Custom Toast notification system
 
 ### Backend
-- Node.js runtime
-- Express.js framework
-- RESTful API design
-- CORS enabled for cross-origin requests
+- Node.js
+- Express.js
+- RESTful API
+- CORS enabled
 
 ## 📁 Project Structure
 
 ```
-user-management-dashboard/
+hr-pro/
 ├── backend/
-│   ├── server.js              # Express server & API routes
-│   ├── package.json
-│   └── package-lock.json
+│   ├── server.js              # Express server & API
+│   └── package.json
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── api/
-│   │   │   └── userApi.js     # API service layer
+│   │   │   └── employeeApi.js # API service layer
 │   │   ├── components/
-│   │   │   ├── UserForm.js    # Add/Edit form component
-│   │   │   ├── UserForm.css
-│   │   │   ├── UserTable.js   # Data table component
-│   │   │   ├── UserTable.css
-│   │   │   ├── SearchBar.js   # Search & sort component
-│   │   │   ├── SearchBar.css
-│   │   │   ├── Pagination.js  # Pagination component
-│   │   │   ├── Pagination.css
-│   │   │   ├── Modal.js       # Confirmation modal
-│   │   │   ├── Modal.css
-│   │   │   ├── Toast.js       # Notification system
-│   │   │   └── Toast.css
-│   │   ├── App.js             # Main application
-│   │   ├── App.css            # Global styles
-│   │   └── index.js           # Entry point
-│   ├── public/
-│   └── package.json
+│   │   │   ├── StatsCards.js  # Dashboard statistics
+│   │   │   ├── Filters.js     # Search & filters
+│   │   │   ├── EmployeeTable.js
+│   │   │   ├── EmployeeForm.js
+│   │   │   ├── Pagination.js
+│   │   │   ├── Modal.js
+│   │   │   └── Toast.js
+│   │   ├── App.js
+│   │   └── App.css
+│   └── public/
 │
 ├── README.md
-├── LICENSE
-└── .gitignore
+└── LICENSE
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn package manager
+- Node.js v14+
+- npm or yarn
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/user-management-dashboard.git
-   cd user-management-dashboard
+   git clone https://github.com/yourusername/hr-pro.git
+   cd hr-pro
    ```
 
 2. **Setup Backend**
@@ -95,94 +92,85 @@ user-management-dashboard/
    npm install
    npm start
    ```
-   Server runs on: `http://localhost:5000`
+   Server: `http://localhost:5000`
 
-3. **Setup Frontend** (new terminal)
+3. **Setup Frontend**
    ```bash
    cd frontend
    npm install
    npm start
    ```
-   App runs on: `http://localhost:3000`
+   App: `http://localhost:3000`
 
 ## 📡 API Endpoints
 
-| Method | Endpoint       | Description          | Request Body           |
-|--------|----------------|----------------------|------------------------|
-| GET    | `/users`       | Get all users        | -                      |
-| GET    | `/users/:id`   | Get user by ID       | -                      |
-| POST   | `/users`       | Create new user      | `{ name, email }`      |
-| PUT    | `/users/:id`   | Update user          | `{ name, email }`      |
-| DELETE | `/users/:id`   | Delete user          | -                      |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/stats` | Get dashboard statistics |
+| GET | `/api/options` | Get departments & positions |
+| GET | `/api/employees` | Get all employees (with filters) |
+| GET | `/api/employees/:id` | Get single employee |
+| POST | `/api/employees` | Create employee |
+| PUT | `/api/employees/:id` | Update employee |
+| DELETE | `/api/employees/:id` | Delete employee |
+| GET | `/api/export` | Export data as JSON |
 
-### Example API Response
+### Query Parameters
+- `search` - Search by name/email/position
+- `department` - Filter by department
+- `status` - Filter by status (active/on-leave/inactive)
+
+## 📊 Employee Data Structure
+
 ```json
 {
   "id": 1,
-  "name": "John Doe",
-  "email": "john@example.com"
+  "name": "Ahmed Hassan",
+  "email": "ahmed@company.com",
+  "phone": "+966501234567",
+  "position": "Senior Developer",
+  "department": "Engineering",
+  "salary": 15000,
+  "status": "active",
+  "joinDate": "2023-01-15"
 }
 ```
 
 ## 🎨 UI Components
 
-### UserForm
-- Controlled form with validation
-- Dynamic title based on mode (Add/Edit)
-- Cancel button for edit mode
+| Component | Description |
+|-----------|-------------|
+| StatsCards | Dashboard statistics with icons |
+| Filters | Search, department & status filters |
+| EmployeeTable | Data table with actions |
+| EmployeeForm | Modal form for add/edit |
+| Pagination | Page navigation |
+| Toast | Notification system |
+| Modal | Confirmation dialogs |
 
-### UserTable
-- Zebra-striped rows for readability
-- Avatar with user initials
-- Action buttons with hover effects
+## 📱 Responsive Design
 
-### SearchBar
-- Real-time filtering
-- Multiple sort options
-- Clear search button
+- Desktop: Full layout with sidebar stats
+- Tablet: Adjusted grid layout
+- Mobile: Stacked components, touch-friendly
 
-### Pagination
-- Dynamic page numbers
-- Previous/Next navigation
-- Items count display
+## 🔒 Validation
 
-### Toast Notifications
-- Success, Error, Warning, Info types
-- Auto-dismiss after 3 seconds
-- Manual close option
-
-### Modal
-- Backdrop blur effect
-- Smooth animations
-- Customizable content
-
-## 📱 Responsive Breakpoints
-
-- **Desktop**: > 768px
-- **Tablet**: 481px - 768px
-- **Mobile**: < 480px
-
-## 🔒 Form Validation
-
-- **Name**: 2-50 characters, letters only
-- **Email**: Valid email format required
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/NewFeature`)
-3. Commit changes (`git commit -m 'Add NewFeature'`)
-4. Push to branch (`git push origin feature/NewFeature`)
-5. Open a Pull Request
+- Name: Required, 2-50 characters
+- Email: Required, valid format
+- Department: Required
+- Position: Required
+- Salary: Optional, numeric
+- Phone: Optional
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE)
 
 ## 👨‍💻 Author
 
-Developed as a Full Stack demonstration project showcasing modern web development practices.
+Professional HR Management System for modern businesses.
 
 ---
 
-⭐ If you found this project helpful, please give it a star!
+⭐ Star this repo if you find it useful!
